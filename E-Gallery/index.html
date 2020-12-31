@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>E-Gallery</title>
+
+    <!--facebook-->
+    <meta property="og:url" content="https://gallery-957d0.firebaseapp.com/#/paintings" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="E-Gallery" />
+    <meta property="og:description" content="The best E-Gallery" />
+    <meta property="og:image" content="http://storage.googleapis.com/e8bba42ae61d461f8b9f5ba304c666e6/86352ed2-db1b-4e84-bfaa-3a0ca113f3b0/header.png"
+    />
+
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+
+    <!--fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Francois+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+    <!--styles-->
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./bower_components/toastr/toastr.css">
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body>
+    <!--facebook share-->
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.9";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <header class="navbar navbar-fixed-top">
+        <div class="container">
+            <div class="row">
+                <div id="logo" class="col-md-3">
+                    <a href="#/home">E-Gallery</a>
+                </div>
+                <div id="nav" class="col-md-9 text-right">
+                    <div class="row">
+                        <div id="menu" class="col-md-6">
+                            <ul class="list-inline">
+                                <li id="linkHome"><a href="#/home">Home</a></li>
+                                <li id="linkGallery"><a href="#/paintings">Gallery</a></li>
+                                <li id="linkLocation"><a href="#/contact">Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <div class="isLoggedIn hidden col-md-6">
+                            <span id="loggedInUser"></span>
+                            <span> | </span>
+                            <a href="#/logout">Logout</a>
+                        </div>
+                        <div id="login-form" class="col-md-6">
+                            <form class="form-inline" action="#/login" method="POST" id="loginForm">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="email" autofocus placeholder="E-mail">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" name="password" placeholder="Password">
+                                </div>
+                                <button type="submit" class="btn btn-info">Login</button>
+                                <a href="#/register" class="btn btn-info">Register</a>
+                            </form>
+                        </div>
+                        <div id="shopping-cart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="wrapper">
+            <main>
+
+            </main>
+    </div>
+    <footer class="row navbar navbar-fixed-bottom">
+        <div class="col-md-3 text-left">
+            &copy; Copyright E-Gallery 2017
+        </div>
+        <div class="col-md-3 col-md-offset-6">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-2">
+                    <a class="twitter-share-button" href="https://gallery-957d0.firebaseapp.com/#/paintings" data-size="large">Tweet</a>
+                </div>
+                <div class="col-md-6">
+                    <div class="fb-share-button" data-href="https://gallery-957d0.firebaseapp.com/#/paintings" data-layout="button" data-size="large"
+                        data-mobile-iframe="true">
+                        <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgallery-957d0.firebaseapp.com%2F%23%2Fpaintings&amp;src=sdkpreparse">Share</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--twitter share-->
+    <script>
+        window.twttr = (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function (f) {
+                t._e.push(f);
+            };
+
+            return t;
+        }(document, "script", "twitter-wjs"));
+    </script>
+
+    <!--geting jquery library v3.2.1-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!--geting jquery-ui libray v1.12.1-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script src="./bower_components/moment/moment.js"></script>
+    <script src="./node_modules/systemjs/dist/system.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-analytics.js"></script>
+    <script src="./scripts/helpers/firebase-config.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // const aside = Handlebars.compile(fs.readFileSync(__dirname + '/templates/partials/aside.handlebars').toString('utf-8'));
+            // Handlebars.registerPartial('aside', aside);
+            
+            // const fileName = 'aside';
+            // const data = this.getFile(`./templates/partials/${fileName}`);
+            // this.hbs.registerPartial(fileName, data);
+            // this.partials.push(fileName);
+            // Promise.resolve();
+    });
+    </script>
+
+    <script src="./config.js"></script>
+</body>
+
+</html>
