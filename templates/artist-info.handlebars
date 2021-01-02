@@ -1,0 +1,39 @@
+<div class="gallery">
+        <div class="row">
+            <div class="col-md-3">
+                 <img class="img-thumbnail artist-img" src="{{paintings.[0].artist.image._downloadURL}}">
+            </div>
+            <div class="col-md-7">
+                <div class="row artist-bio">
+                    <div class="col-md-3">
+                        <div><strong>Name:</strong></div>
+                        <div><strong>City:</strong></div>
+                        <div><strong>Style:</strong></div>
+                        <div><strong>Artworks:</strong></div>
+                        <div><strong>Presentation:</strong></div>
+                    </div>
+                    <div class="col-md-9">
+                         <div>{{paintings.[0].artist.name}}</div>
+                        <div>{{paintings.[0].artist.city}}</div>                      
+                        <div>{{paintings.[0].artist.style}}</div>                   
+                        <div>{{paintings.[0].artist.artworks}}</div>                       
+                        <div>{{paintings.[0].artist.biography}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <hr>
+         {{#if paintings.length}}
+        <ul class="galleryItems list-group ">
+            {{#each paintings}}
+            <li class="itemGallery list-group-item col-md-3">
+                <div class=" double-border"><img class="img-thumbnail by-artist" src="{{image._downloadURL}}"></div>
+                <h4><a class="title" data-id="{{_id}}" href="#/paintings/{{_id}}"><strong>{{title}}</strong></a></h4>
+            </li>
+            {{/each}}
+        </ul>
+    {{else}}
+    <div>No paintings available</div>
+    {{/if}}
+</div>

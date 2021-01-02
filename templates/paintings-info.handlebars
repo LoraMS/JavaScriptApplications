@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="row">
+    <aside id="aside-partial" class="position-fixed col-md-2">
+        <div class="input-group">
+            <div>
+                <select id="select" name="select">
+                    <option value="filter" selected>Filter</option>
+                    <option value="artist">Artist</option>
+                    <option value="title">Title</option>
+                </select>
+            </div>
+            <input type="text" id="search-input" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+                <button class="btn btn-default" id="search-btn" type="button"><span
+                        class="glyphicon glyphicon-search"></span></button>
+            </span>
+        </div>
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation" class="active"><a href="#">Style</a></li>
+            <li role="presentation"><a href="#/style/Abstract Art">Abstract Art</a></li>
+            <li role="presentation"><a href="#/style/Landscape Art">Landscape Art</a></li>
+            <li role="presentation"><a href="#/style/Realism">Realism</a></li>
+            <li role="presentation"><a href="#/style/Impressionism">Impressionism</a></li>
+        </ul>
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation" class="active"><a href="#">Subject</a></li>
+            <li role="presentation"><a href="#/subject/Animals">Animals</a></li>
+            <li role="presentation"><a href="#/subject/Flora">Flora</a></li>
+            <li role="presentation"><a href="#/subject/Landscape">Landscape</a></li>
+            <li role="presentation"><a href="#/subject/Seascape">Seascape</a></li>
+        </ul>
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation" class="active"><a href="#">Tehnique</a></li>
+            <li role="presentation"><a href="#/technique/Oil Painting">Oil Painting</a></li>
+            <li role="presentation"><a href="#/technique/Acrylic Painting">Acrilic Painting</a></li>
+            <li role="presentation"><a href="#/technique/Watercolor Painting">Watercolor Painting</a></li>
+        </ul>
+    </aside>
+    <div class="gallery col-md-9 col-md-offset-1">
+        <div class="display-info">
+                <div class="double-border ">
+                    <img src="{{imageURL}}" alt="" class="img-thumbnail">
+                </div>
+                <div>
+                    <h2>Artist: <strong>{{artistName}}</strong></h3>
+                        <h3>Title: <strong>{{title}}</strong></h4>
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="description">Technique: </div>
+                                    <div class="description">Size: </div>
+                                    <div class="description">Description: </div>
+                                    <div class="description">Status: </div>
+                                    <div class="description">Price: </div>
+                                    <div class="description">Rating: </div>
+                                    <div class="description rate-like hidden">Likes: </div>
+                                    <div class="description rate-dislike hidden">Dislikes: </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="description"><strong>{{technique}}</strong></div>
+                                    <div class="description"><strong>{{size}}</strong></div>
+                                    <div class="description"><strong>{{description}}</strong></div>
+                                    <div class="description"><strong>{{status}}</strong></div>
+                                    <div class="description"><strong>${{price}}</strong></div>
+                                    <div class="description"><strong>{{rating}}</strong></div>
+                                    <div class="description rate-like hidden"><span
+                                            class="label label-default likes">0</span></div>
+                                    <div class="description rate-dislike hidden"><span
+                                            class="label label-default dislikes">0</span></div>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <button type="button" class="btn btn-md like"><span class="glyphicon glyphicon-thumbs-up"
+                                    aria-hidden="true"></span> Like</button>
+                            <button type="button" class="btn btn-md dislike"><span
+                                    class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> Dislike</button>
+                            <button type="button" class="btn btn-md buy">Add to cart</button>
+                            <button type="button" class="btn btn-md download">Download</button>
+                            <button type="button" class="btn btn-md comment">Comments</button>
+                            <br>
+                            <br>
+                            <div id="comments-container"></div>
+                </div>
+        </div>
+    </div>
+</div>
+</div>
