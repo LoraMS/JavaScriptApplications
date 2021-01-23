@@ -1,7 +1,8 @@
 <div class="gallery">
+    {{#each artist}}
         <div class="row">
             <div class="col-md-3">
-                 <img class="img-thumbnail artist-img" src="{{paintings.[0].artist.image._downloadURL}}">
+                 <img class="img-thumbnail artist-img" src="{{imageURL}}">
             </div>
             <div class="col-md-7">
                 <div class="row artist-bio">
@@ -13,27 +14,28 @@
                         <div><strong>Presentation:</strong></div>
                     </div>
                     <div class="col-md-9">
-                         <div>{{paintings.[0].artist.name}}</div>
-                        <div>{{paintings.[0].artist.city}}</div>                      
-                        <div>{{paintings.[0].artist.style}}</div>                   
-                        <div>{{paintings.[0].artist.artworks}}</div>                       
-                        <div>{{paintings.[0].artist.biography}}</div>
+                         <div>{{artistName}}</div>
+                        <div>{{city}}</div>                     
+                        <div>{{style}}</div>                   
+                        <div>{{artworks.length}}</div>                       
+                        <div>{{presentation}}</div>
                     </div>
                 </div>
             </div>
             <div class="col-md-1"></div>
         </div>
         <hr>
-         {{#if paintings.length}}
+         {{#if artworks.length}}
         <ul class="galleryItems list-group ">
-            {{#each paintings}}
+            {{#each artworks}}
             <li class="itemGallery list-group-item col-md-3">
-                <div class=" double-border"><img class="img-thumbnail by-artist" src="{{image._downloadURL}}"></div>
-                <h4><a class="title" data-id="{{_id}}" href="#/paintings/{{_id}}"><strong>{{title}}</strong></a></h4>
+                <div class=" double-border"><img class="img-thumbnail by-artist" src="{{imageURL}}"></div>
+                <h4><a class="title" data-id="{{id}}" href="#/paintings/{{id}}"><strong>{{title}}</strong></a></h4>
             </li>
             {{/each}}
         </ul>
     {{else}}
     <div>No paintings available</div>
     {{/if}}
+    {{/each}}
 </div>
