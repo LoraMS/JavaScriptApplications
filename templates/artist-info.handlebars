@@ -1,41 +1,79 @@
-<div class="gallery">
-    {{#each artist}}
-        <div class="row">
-            <div class="col-md-3">
-                 <img class="img-thumbnail artist-img" src="{{imageURL}}">
+<div class="container">
+    <div class="row">
+        <aside id="aside-partial" class="position-fixed col-md-2">
+            <div class="input-group">
+                <div>
+                    <select id="select" name="select">
+                        <option value="filter" selected>Filter</option>
+                        <option value="artist">Artist</option>
+                        <option value="title">Title</option>
+                    </select>
+                </div>
+                <input type="text" id="search-input" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" id="search-btn" type="button"><span
+                            class="glyphicon glyphicon-search"></span></button>
+                </span>
             </div>
-            <div class="col-md-7">
-                <div class="row artist-bio">
-                    <div class="col-md-3">
-                        <div><strong>Name:</strong></div>
-                        <div><strong>City:</strong></div>
-                        <div><strong>Style:</strong></div>
-                        <div><strong>Artworks:</strong></div>
-                        <div><strong>Presentation:</strong></div>
-                    </div>
-                    <div class="col-md-9">
-                         <div>{{artistName}}</div>
-                        <div>{{city}}</div>                     
-                        <div>{{style}}</div>                   
-                        <div>{{artworks.length}}</div>                       
-                        <div>{{presentation}}</div>
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation" class="active"><a href="#">Style</a></li>
+                <li role="presentation"><a href="#/style/Abstract Art">Abstract Art</a></li>
+                <li role="presentation"><a href="#/style/Landscape Art">Landscape Art</a></li>
+                <li role="presentation"><a href="#/style/Realism">Realism</a></li>
+                <li role="presentation"><a href="#/style/Impressionism">Impressionism</a></li>
+            </ul>
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation" class="active"><a href="#">Subject</a></li>
+                <li role="presentation"><a href="#/subject/Animals">Animals</a></li>
+                <li role="presentation"><a href="#/subject/Flora">Flora</a></li>
+                <li role="presentation"><a href="#/subject/Landscape">Landscape</a></li>
+                <li role="presentation"><a href="#/subject/Seascape">Seascape</a></li>
+            </ul>
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation" class="active"><a href="#">Tehnique</a></li>
+                <li role="presentation"><a href="#/technique/Oil Painting">Oil Painting</a></li>
+                <li role="presentation"><a href="#/technique/Acrylic Painting">Acrilic Painting</a></li>
+                <li role="presentation"><a href="#/technique/Watercolor Painting">Watercolor Painting</a></li>
+            </ul>
+        </aside>
+        <div class="gallery col-md-9 col-md-offset-1">
+            {{#each artist}}
+            <div class="row">
+                <div class="col-md-3">
+                    <img class="img-thumbnail artist-img" src="{{imageURL}}">
+                </div>
+                <div class="col-md-9">
+                    <div class="artist-bio">
+                        <dl>
+                            <dt><strong>Name:</strong></dt>
+                            <dd>{{artistName}}</dd>
+                            <dt><strong>City:</strong></dt>
+                            <dd>{{city}}</dd>
+                            <dt><strong>Style:</strong></dt>
+                            <dd>{{style}}</dd>
+                            <dt><strong>Artworks:</strong></dt>
+                            <dd>{{artworks.length}}</dd>
+                            <dt><strong>Presentation:</strong></dt>
+                            <dd>{{presentation}}</dd>
+                        </dl>
                     </div>
                 </div>
+                <div class="col-md-1"></div>
             </div>
-            <div class="col-md-1"></div>
-        </div>
-        <hr>
-         {{#if artworks.length}}
-        <ul class="galleryItems list-group ">
-            {{#each artworks}}
-            <li class="itemGallery list-group-item col-md-3">
-                <div class=" double-border"><img class="img-thumbnail by-artist" src="{{imageURL}}"></div>
-                <h4><a class="title" data-id="{{id}}" href="#/paintings/{{id}}"><strong>{{title}}</strong></a></h4>
-            </li>
+            <hr>
+            {{#if artworks.length}}
+            <ul class="galleryItems list-group ">
+                {{#each artworks}}
+                <li class="itemGallery list-group-item col-md-3">
+                    <div class=" double-border"><img class="img-thumbnail by-artist" src="{{imageURL}}"></div>
+                    <h4><a class="title" data-id="{{id}}" href="#/paintings/{{id}}"><strong>{{title}}</strong></a></h4>
+                </li>
+                {{/each}}
+            </ul>
+            {{else}}
+            <div>No paintings available</div>
+            {{/if}}
             {{/each}}
-        </ul>
-    {{else}}
-    <div>No paintings available</div>
-    {{/if}}
-    {{/each}}
+        </div>
+    </div>
 </div>
