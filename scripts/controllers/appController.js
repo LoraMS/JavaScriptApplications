@@ -1,5 +1,6 @@
 import toastr from 'toastr';
 import { appModel } from 'appModel';
+import { userModel } from 'userModel';
 import { templates } from 'templates';
 import { userController } from 'userController';
 
@@ -46,6 +47,14 @@ let appController = (function () {
                     return templates.getTemplate('paintings-info');
                 }).then(function (template) {
                     selector.html(template(result));
+                    let user = localStorage.getItem('email');
+                    if(user){
+                        $('#textarea-comment').removeClass('hidden');
+                        $('#add-comment').removeClass('hidden');
+                    } else {
+                        $('#textarea-comment').addClass('hidden');
+                        $('#add-comment').addClass('hidden');
+                    }
 
     //                 $('.like').on('click', function () {
     //                     self.appModel.rateLikes(result)
@@ -75,49 +84,44 @@ let appController = (function () {
     //                         .catch(function (error) {
     //                             toastr.error('Unable to download painting!');
     //                         });
-    //                 });
-
-    //                 $('#comments-container').addClass('hidden');
-    //                 $('.comment').on('click', function () {
-    //                     $('#comments-container').toggleClass('hidden');
-    //                     self.appModel.getAllComments(result._id).then(function (data) {
-    //                         resultComments = {
-    //                             comments: data
-    //                         };
-    //                         return templates.getTemplate('comments');
-    //                     }).then(function (template) {
-    //                         $('#comments-container').html(template(resultComments));
-
-    //                         $('#add-comment').on('click', function (ev) {
-    //                             let content = {
-    //                                 date: moment().format("ll"),
-    //                                 text: $('#textarea-comment').val(),
-    //                                 user: sessionStorage.getItem("username"),
-    //                                 paintingId: result._id
-    //                             };
-    //                             if (content.text === "") {
-    //                                 toastr.error("You have not write a comment!");
-    //                                 ev.preventDefault();
-    //                                 return;
-    //                             }
-    //                             self.appModel.addNewComment(content).then(function (data) {
-    //                                 toastr.success('Comment was added');
-    //                             }).catch(function (error) {
-    //                                 toastr.error('Try again');
-    //                             });
-
-    //                             self.appModel.getAllComments(result._id).then(function (data) {
-    //                                 resultComments = {
-    //                                     comments: data
-    //                                 };
-    //                                 return templates.getTemplate('comments');
-    //                             }).then(function (template) {
-    //                                 $('#comments-container').html(template(resultComments));
-    //                             });
-    //                         });
     //                     });
-    //                 });
-    //             })
+                    // $('.comment').on('click', function () {
+                        // $('#comments-container').toggleClass('hidden');
+                        //     return templates.getTemplate('comments');
+                        // }).then(function (template) {
+                        //     $('#comments-container').html(template(result));
+
+                            $('#add-comment').on('click', function (ev) {
+                                let content = {
+                                    date: moment().format("ll"),
+                                    text: $('#textarea-comment').val(),
+                                    user: user,
+                                };
+                                
+                                if (content.text === "") {
+                                    toastr.error("You have not write a comment!");
+                                    ev.preventDefault();
+                                    return;
+                                }
+                                self.appModel.addNewComment(content, id).then(function (data) {
+                                    toastr.success('Comment was added');
+                                }).catch(function (error) {
+                                    console.log(error);
+                                    toastr.error('Try again');
+                                });
+
+                                self.appModel.getPaintingsInfo(result.id).then(function (data) {
+                                    resultComments = {
+                                        comments: data
+                                    };
+                                    return templates.getTemplate('comments');
+                                }).then(function (template) {
+                                    $('#comments-container').html(template(resultComments));
+                                });
+                            });
+                        // });
+                    //});
+    //           })
     //             .then(() => {
     //                 $('.buy').on('click', () => this.addToCart(result));
     //                 if (userController.shoppingCartManager.isAdded(id)) {
@@ -128,6 +132,7 @@ let appController = (function () {
                 })
                 .catch(function (error) {
                     toastr.error('Unable to display painting!');
+                    console.log(error);
                     location.hash = '#/paintings';
                 });
         }
@@ -137,11 +142,9 @@ let appController = (function () {
             let result;
             this.appModel.getArtistsInfo(artist).then((item) => {
                 let artist = item.docs.map((d) => {return {...d.data(), id: d.id}});
-                console.log(artist);
                 result = {
                     artist
                 };
-                console.log(result);
                 return templates.getTemplate('artist-info');
             }).then(function (template) {
                 selector.html(template(result));

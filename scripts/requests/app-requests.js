@@ -65,22 +65,11 @@ class AppModel {
     //     return this._requester.get(requestUrl, requestHeaders);
     // }
 
-    // getAllComments(id) {
-    //     var filter = JSON.stringify({
-    //         "paintingId": id
-    //     });
-    //     let requestUrl = this._url + 'appdata/' + this._appKey + '/comments?query=' + filter;
-    //     let requestHeaders = this._authenticationService.getKinveyUserAuthHeaders();
-
-    //     return this._requester.get(requestUrl, requestHeaders);
-    // }
-
-    //  addNewComment(data){
-    //     let requestUrl = this._url + 'appdata/' + this._appKey + '/comments';
-    //     let requestHeaders = this._authenticationService.getKinveyUserAuthHeaders();
-
-    //     return this._requester.post(requestUrl, requestHeaders, data);
-    // }
+     addNewComment(comment, paintingId){
+        return firebase.firestore().collection("paintings").doc(paintingId).update({
+            comments: firebase.firestore.FieldValue.arrayUnion(comment)
+        });
+    }
 
     getPaintingsInfoByStyle(style){
         return firebase.firestore().collection("paintings").where("style", "==", style).get();
