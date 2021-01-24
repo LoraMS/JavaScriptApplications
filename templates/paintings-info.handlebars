@@ -36,46 +36,69 @@
                 <li role="presentation"><a href="#/technique/Watercolor Painting">Watercolor Painting</a></li>
             </ul>
         </aside>
-    <div class="gallery col-md-9 col-md-offset-1">
-        <div class="row display-info">
-            <div class="col-md-6">{{!-- class="double-border" --}}
-                <img src="{{imageURL}}" alt="" class="img-thumbnail">
-            </div>
-            <div class="col-md-6">
-                <h2>Artist: <strong>{{artistName}}</strong></h3>
-                    <h3>Title: <strong>{{title}}</strong></h4>
-                        <br>
-                        <br>
-                        <dl class="description">
-                            <dt>Technique: </dt>
-                            <dd><strong>{{technique}}</strong></dd>
-                            <dt>Size: </dt>
-                            <dd><strong>{{size}}</strong></dd>
-                            <dt>Description: </dt>
-                            <dd><strong>{{description}}</strong></dd>
-                            <dt>Status: </dt>
-                            <dd><strong>{{status}}</strong></dd>
-                            <dt>Price: </dt>
-                            <dd><strong>${{price}}</strong></dd>
-                            <dt>Rating: </dt>
-                            <dd><strong>{{rating}}</strong></dd>
-                        </dl>
-                        <br>
-                        <br>
-                        <button type="button" class="btn btn-md like"><span class="glyphicon glyphicon-thumbs-up"
-                                    aria-hidden="true"></span> Like</button>
-                        <button type="button" class="btn btn-md dislike"><span
-                                    class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> Dislike</button>
-                        <button type="button" class="btn btn-md buy">Add to cart</button>
-                        <button type="button" class="btn btn-md download">Download</button>
-                        <br>
-                        <br>
-                        <h4>Comments</h4>
-                        <hr>
-                        <button type="button" class="btn btn-md comment">See more</button>
-                        <div id="comments-container"></div>
+        <div class="gallery col-md-9 col-md-offset-1">
+            <div class="row display-info">
+                <div class="col-md-6">
+                    <img src="{{imageURL}}" alt="" class="img-thumbnail">
                 </div>
+                <div class="col-md-6">
+                    <h2>Artist: <strong>{{artistName}}</strong></h2>
+                    <h3>Title: <strong>{{title}}</strong></h3>
+                    <br>
+                    <br>
+                    <dl class="description">
+                        <dt>Technique: </dt>
+                        <dd><strong>{{technique}}</strong></dd>
+                        <dt>Size: </dt>
+                        <dd><strong>{{size}}</strong></dd>
+                        <dt>Description: </dt>
+                        <dd><strong>{{description}}</strong></dd>
+                        <dt>Status: </dt>
+                        <dd><strong>{{status}}</strong></dd>
+                        <dt>Price: </dt>
+                        <dd><strong>${{price}}</strong></dd>
+                        <dt>Rating: </dt>
+                        <dd><strong>{{rating}}</strong></dd>
+                    </dl>
+                    <br>
+                    <br>
+                    <button type="button" class="btn btn-md like"><span class="glyphicon glyphicon-thumbs-up"
+                            aria-hidden="true"></span> Like</button>
+                    <button type="button" class="btn btn-md dislike"><span class="glyphicon glyphicon-thumbs-down"
+                            aria-hidden="true"></span> Dislike</button>
+                    <button type="button" class="btn btn-md buy">Add to cart</button>
+                    <button type="button" class="btn btn-md download">Download</button>
+                    <br>
+                    <br>
+                    <h4>Comments</h4>
+                    <hr>
+                    <div id="comments-container">
+                        <div class="comments-box">
+                            {{#if comments.length}}
+                            <ul>
+                                {{#each comments}}
+                                <li>
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <span class="glyphicon glyphicon-user" aria-hidden="true">
+                                        </div>
+                                        <div class="col-md-11">
+                                            <div>posted by <strong> {{user}} </strong> <em> {{date}}</em></div>
+                                            <div>
+                                                {{text}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                {{/each}}
+                            </ul>
+                            {{else}} <h4>There are no comments yet.</h4> {{/if}}
+                            <textarea name="addCommentBox" class="hidden" id="textarea-comment" cols="73" rows="4"></textarea>
+                            <button type="button" class="btn btn-md hidden" id="add-comment">Add comment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 </div>
