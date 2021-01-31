@@ -32,6 +32,10 @@ class UserModel {
     logout() {
         return firebase.auth().signOut();
     }
+
+    addMessage(data){
+        return firebase.firestore().collection("messages").add(data);
+    }
 }
 
 const userModel = new UserModel();

@@ -74,25 +74,9 @@ let app = app || {};
             userController.getContactForm(selector);
         });
 
-        // this.get('#/send', function () {
-        //     let data = {
-        //         'name': $('#name').val(),
-        //         'e-mail': $('#email').val(),
-        //         'subject': $('#subject').val(),
-        //         'message': $('#message').val()
-        //     };
-
-        //     $('#name').val('');
-        //     $('#email').val('');
-        //     $('#subject').val('');
-        //     $('#message').val('');
-
-        //     appModel.addMessage(data).then(function (success) {
-        //         toastr.success('Your message was send successfuly!');
-        //     }).catch(function (error) {
-        //         toastr.error('Send your message again.');
-        //     });
-        // });
+        this.get('#/send', function () {
+           userController.sendContactInformation();
+        });
 
         $(document).on('click', '#search-btn', function () {
             let data = $('#search-input').val();

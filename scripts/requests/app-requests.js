@@ -62,13 +62,6 @@ class AppModel {
         let filter = capitalize(artist);
         return firebase.firestore().collection("paintings").orderBy('artistName').startAt(filter).endAt(filter + '\uf8ff').get();
     }
-
-    // addMessage(data){
-    //     let requestUrl = this._url + 'appdata/' + this._appKey + '/messages';
-    //     let requestHeaders = this._authenticationService.getKinveyUserAuthHeaders();
-
-    //     return this._requester.post(requestUrl, requestHeaders, data);
-    // }
 }
 
 const appModel = new AppModel();

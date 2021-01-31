@@ -51,36 +51,6 @@ let userController = (function() {
             });
         }
 
-        // getLogInForm(selector) {
-        //     $(selector).empty();
-            
-        //     this.templates.getTemplate('login-form').then((responseTemplate) => {
-        //         selector.html(responseTemplate());
-        //     }).then(() => {
-                // appModel.getMeal().then((data) => {
-                //     const recent = data.slice(0, 7);
-                //     resultPosts = {
-                //         recentPosts: recent
-                //     };
-                //     return templates.getTemplate('recent-posts');
-                // }).then((template) => {
-                //     $('.list-posts').html(template(resultPosts));
-                // });
-            // }).then(() => {
-                // appModel.getAllComments().then((data) => {
-                //     const recent = data.slice(0, 7);
-                //     resultComments = {
-                //         recentComments: recent
-                //     };
-                //     return templates.getTemplate('recent-comments');
-                // }).then((template) => {
-                //     $('.list-comments').html(template(resultComments));
-                // });
-        //     }).catch((error) => {
-        //         toastr.error('');
-        //     });
-        // }
-
         loginAction(selector, email, password) {
             $(selector).empty();
            
@@ -113,6 +83,33 @@ let userController = (function() {
                 // $("#shopping-cart").hide();
                 toastr.success('Logout successful!');
                 location.hash = '#/home';
+            });
+        }
+        
+        sendContactInformation() {
+            let user = localStorage.getItem('email');
+            if(!user){
+                toastr.error("Please login or register");
+                location.hash = '#/register';
+                return;
+            }
+            let data = {
+                'name': $('#name').val(),
+                'e-mail': $('#email').val(),
+                'subject': $('#subject').val(),
+                'message': $('#message').val()
+            };
+
+            $('#name').val('');
+            $('#email').val('');
+            $('#subject').val('');
+            $('#message').val('');
+
+            userModel.addMessage(data).then(function (success) {
+                toastr.success('Your message was send successfuly!');
+            }).catch(function (error) {
+                console.log(error);
+                toastr.error('Please send your message again!');
             });
         }
 
