@@ -98,6 +98,8 @@ let userController = (function() {
 
                 toastr.success('User login successful!');
                 userModel.changeAuthState();
+                $('.email').val('');
+                $('.password').val('');
                 location.hash = '#/paintings';
             }).catch((error) => {
                 toastr.error('Invalid username or password!');
