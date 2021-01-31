@@ -58,7 +58,10 @@
                         <dt>Price: </dt>
                         <dd><strong>${{price}}</strong></dd>
                         <dt>Rating: </dt>
-                        <dd><strong>{{rating}}</strong></dd>
+                        <dd>
+                            <div class="stars-rating">
+                            </div>
+                        </dd>
                     </dl>
                     <br>
                     <br>
@@ -95,6 +98,7 @@
                             {{else}} <h4>There are no comments yet.</h4> {{/if}}
                             <textarea name="addCommentBox" class="hidden" id="textarea-comment" cols="73" rows="4"></textarea>
                             <button type="button" class="btn btn-md hidden" id="add-comment">Add comment</button>
+                            <p id="log-reg">To comment please <a href="#/register">login</a> or <a href="#/register">register</a></p>
                         </div>
                     </div>
                 </div>

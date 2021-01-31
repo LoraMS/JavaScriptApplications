@@ -33,7 +33,6 @@ let appController = (function () {
             }).catch(function (error) {
                 toastr.error('Unable to display gallery!');
                 location.hash = '#/home';
-                console.log(error);
             });
         }
 
@@ -51,45 +50,58 @@ let appController = (function () {
                     if(user){
                         $('#textarea-comment').removeClass('hidden');
                         $('#add-comment').removeClass('hidden');
+                        $('#log-reg').addClass('hidden');
                     } else {
                         $('#textarea-comment').addClass('hidden');
                         $('#add-comment').addClass('hidden');
+                        $('#log-reg').removeClass('hidden');
                     }
 
-    //                 $('.like').on('click', function () {
-    //                     self.appModel.rateLikes(result)
-    //                         .then(function (data) {
-    //                             return self.galleryModel.getLikes(data.paintingId);
-    //                         }).then(function (array) {
-    //                             $('.likes').text(array.length);
-    //                             $('.rate-like').removeClass('hidden');
-    //                             $('.like').attr('disabled', true);
-    //                         });
-    //                 });
+                    $('.like').on('click', function () {
+                        if(!user){
+                            toastr.error("Please login or register");
+                            location.hash = '#/register';
+                            return;
+                        }
+                        self.appModel.rateLikes(id)
+                            .then(function (data) {
+                                $('.like').attr('disabled', true);
+                                toastr.success('You like this painting');
+                            });
+                    });
 
-    //                 $('.dislike').on('click', function () {
-    //                     self.appModel.rateDislikes(result)
-    //                         .then(function (data) {
-    //                             return self.galleryModel.getDislikes(data.paintingId);
-    //                         }).then(function (array) {
-    //                             $('.dislikes').text(array.length);
-    //                             $('.rate-dislike').removeClass('hidden');
-    //                             $('.dislike').attr('disabled', true);
-    //                         });
-    //                 });
+                    $('.dislike').on('click', function () {
+                        if(!user){
+                            toastr.error("Please login or register");
+                            location.hash = '#/register';
+                            return;
+                        }
+                        self.appModel.rateDislikes(id)
+                            .then(function (data) {
+                                $('.dislike').attr('disabled', true);
+                                toastr.success('You dislike this painting');
+                            });
+                    });
+
+                    let likes = result.likes;
+                    let dislikes = result.dislikes;
+                    let rating = calculateStarRating(likes, dislikes);
+                    let style =`--rating: ${rating};`;
+                    $('.stars-rating').attr('style',style); 
+
 
     //                 $('.download').on('click', function () {
+    //                        if(!user){
+    //                            toastr.error("Please login or register");
+    //                            location.hash = '#/register';
+    //                            return;
+    //                        }
     //                     self.appModel.downloadPainting(result.image._id)
     //                         .then(downloadWithSuccess)
     //                         .catch(function (error) {
     //                             toastr.error('Unable to download painting!');
     //                         });
     //                     });
-                    // $('.comment').on('click', function () {
-                        // $('#comments-container').toggleClass('hidden');
-                        //     return templates.getTemplate('comments');
-                        // }).then(function (template) {
-                        //     $('#comments-container').html(template(result));
 
                             $('#add-comment').on('click', function (ev) {
                                 let content = {
@@ -110,17 +122,13 @@ let appController = (function () {
                                     toastr.error('Try again');
                                 });
 
-                                self.appModel.getPaintingsInfo(result.id).then(function (data) {
-                                    resultComments = {
-                                        comments: data
-                                    };
-                                    return templates.getTemplate('comments');
+                                self.appModel.getPaintingsInfo(id).then((commentsData) => {
+                                    resultComments = commentsData.data();
+                                    return templates.getTemplate('paintings-info');
                                 }).then(function (template) {
-                                    $('#comments-container').html(template(resultComments));
+                                    selector.html(template(resultComments));
                                 });
                             });
-                        // });
-                    //});
     //           })
     //             .then(() => {
     //                 $('.buy').on('click', () => this.addToCart(result));
@@ -265,6 +273,13 @@ let appController = (function () {
     //     link.href = url;
     //     link.click();
     // }
+
+    function calculateStarRating(likes, dislikes){ 
+        const maxNumberOfStars = 5; 
+        let totalRating = likes + dislikes;
+        let likePercentageStars = (likes / totalRating) * maxNumberOfStars;
+        return likePercentageStars;
+    }
 
     return new AppController(templates, appModel);
 })();
