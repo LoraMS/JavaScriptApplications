@@ -90,45 +90,36 @@ let appController = (function () {
                     $('.stars-rating').attr('style',style); 
 
 
-    //                 $('.download').on('click', function () {
-    //                        if(!user){
-    //                            toastr.error("Please login or register");
-    //                            location.hash = '#/register';
-    //                            return;
-    //                        }
-    //                     self.appModel.downloadPainting(result.image._id)
-    //                         .then(downloadWithSuccess)
-    //                         .catch(function (error) {
-    //                             toastr.error('Unable to download painting!');
-    //                         });
-    //                     });
+                    $('.download').on('click', function () {
+                       return downloadWithSuccess(result);
+                    });
 
-                            $('#add-comment').on('click', function (ev) {
-                                let content = {
-                                    date: moment().format("ll"),
-                                    text: $('#textarea-comment').val(),
-                                    user: user,
-                                };
+                    $('#add-comment').on('click', function (ev) {
+                        let content = {
+                            date: moment().format("ll"),
+                            text: $('#textarea-comment').val(),
+                            user: user,
+                        };
                                 
-                                if (content.text === "") {
-                                    toastr.error("You have not write a comment!");
-                                    ev.preventDefault();
-                                    return;
-                                }
-                                self.appModel.addNewComment(content, id).then(function (data) {
-                                    toastr.success('Comment was added');
-                                }).catch(function (error) {
-                                    console.log(error);
-                                    toastr.error('Try again');
-                                });
+                        if (content.text === "") {
+                            toastr.error("You have not write a comment!");
+                            ev.preventDefault();
+                            return;
+                        }
+                        self.appModel.addNewComment(content, id).then(function (data) {
+                            toastr.success('Comment was added');
+                        }).catch(function (error) {
+                            console.log(error);
+                            toastr.error('Try again');
+                        });
 
-                                self.appModel.getPaintingsInfo(id).then((commentsData) => {
-                                    resultComments = commentsData.data();
-                                    return templates.getTemplate('paintings-info');
-                                }).then(function (template) {
-                                    selector.html(template(resultComments));
-                                });
-                            });
+                        self.appModel.getPaintingsInfo(id).then((commentsData) => {
+                            resultComments = commentsData.data();
+                            return templates.getTemplate('paintings-info');
+                        }).then(function (template) {
+                            selector.html(template(resultComments));
+                        });
+                    });
     //           })
     //             .then(() => {
     //                 $('.buy').on('click', () => this.addToCart(result));
@@ -266,13 +257,13 @@ let appController = (function () {
         }
     }
 
-    // function downloadWithSuccess(data) {
-    //     let url = data._downloadURL;
-    //     let link = document.createElement('a');
-    //     link.download = url.substr(url.lastIndexOf('/'));
-    //     link.href = url;
-    //     link.click();
-    // }
+    function downloadWithSuccess(data) {
+        let link = document.createElement('a');
+        link.download = data.title + '.jpg';
+        link.href = data.imageURL + '&authuser=0&export=download';
+        document.body.appendChild(link);
+        link.click();
+    }
 
     function calculateStarRating(likes, dislikes){ 
         const maxNumberOfStars = 5; 

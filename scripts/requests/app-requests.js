@@ -24,14 +24,6 @@ class AppModel {
         });
     }
 
-    // js download image from url
-    // downloadPainting(id){
-    //     let requestUrl = this._url + 'blob/' + this._appKey + '/' + id;
-    //     let requestHeaders = this._authenticationService.getKinveyUserAuthHeaders();
-
-    //     return this._requester.get(requestUrl, requestHeaders);
-    // }
-
      addNewComment(comment, paintingId){
         return firebase.firestore().collection("paintings").doc(paintingId).update({
             comments: firebase.firestore.FieldValue.arrayUnion(comment)
