@@ -18,7 +18,6 @@ let appController = (function () {
             });
         }
 
-
         getGallery(selector) {
             $(selector).empty();
             let result;

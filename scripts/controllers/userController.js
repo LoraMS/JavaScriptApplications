@@ -1,5 +1,5 @@
 import { ShoppingCartController } from 'shoppingCartController';
-import { ShoppingCartManager } from 'shoppingCartManager';
+// import { ShoppingCartManager } from 'shoppingCartManager';
 import bootstrap from 'bootstrap';
 import toastr from 'toastr';
 import { templates } from 'templates';
@@ -9,8 +9,8 @@ import { appModel } from 'appModel';
 let userController = (function() {
     class UserController {
         constructor(templates, userModel) {
-            this.shoppingCartController = null;
-            this.shoppingCartManager = new ShoppingCartManager("", window.storage);
+            // this.shoppingCartController = null;
+            // this.shoppingCartManager = new ShoppingCartManager("", window.storage);
             this.templates = templates;
             this.userModel = userModel;
         }
