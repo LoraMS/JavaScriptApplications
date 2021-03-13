@@ -403,7 +403,7 @@ body .hidden {
   display: none;
 }
 #shoppingCart {
-  width: 40px;
+  width: 30px;
   margin-left: 15px;
 }
 #shoppingCart:hover {
@@ -423,12 +423,11 @@ body .hidden {
   border-radius: 50%;
 }
 #shopping-cart {
-  overflow-y: auto;
-  width: 400px;
+  display: inline-block;
 }
 .cart-header {
   padding: 2px 16px;
-  background-color: rgba(92, 184, 92, 0.7);
+  background-color: #dddddd;
   color: white;
 }
 .cart-body {
@@ -437,7 +436,7 @@ body .hidden {
 }
 .cart-footer {
   padding: 2px 16px;
-  background-color: rgba(92, 184, 92, 0.7);
+  background-color: #dddddd;
   color: white;
 }
 .cart-footer div {
@@ -450,15 +449,13 @@ body .hidden {
   height: 200px;
   overflow-y: auto;
   position: absolute;
-  top: 80px;
-  right: -5px;
+  top: 75px;
+  right: 0;
   z-index: 10;
   background-color: #fefefe;
   margin: auto;
   padding: 0;
   border: 1px solid #888;
-  width: 70%;
-  height: 260px;
   text-align: left;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
@@ -499,11 +496,11 @@ body .hidden {
   vertical-align: middle;
 }
 .order-button {
-  background-color: rgba(92, 184, 92, 0.3);
+  background-color: rgba(0, 236, 253, 0.3);
   -moz-border-radius: 28px;
   -webkit-border-radius: 28px;
-  border-radius: 28px;
-  border: 1px solid #02750e;
+  border-radius: 4px;
+  border: 1px solid #747474;
   display: inline-block;
   cursor: pointer;
   color: #ffffff;
@@ -511,10 +508,10 @@ body .hidden {
   font-size: 17px;
   padding: 16px 31px;
   text-decoration: none;
-  text-shadow: 0px 1px 0px #2f6627;
+  text-shadow: 0px 1px 0px #60695f;
 }
 .order-button:hover {
-  background-color: #5cbf2a;
+  background-color: #b1b3b0;
   color: #fff;
 }
 .order-button:active {

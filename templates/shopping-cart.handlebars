@@ -1,0 +1,29 @@
+<div class="cart-content">
+    <div class="cart-header">
+        <ul class="cart-header-row">
+                        <div class = "image-header-row">Painting</div>
+                        <div class = "author-header-row">Artist</div>
+                        <div class = "painting-title-header-row">Title</div>
+                        <div class = "painting-price-header-row">Price</div>
+        </ul>
+        <span class="close">&times;</span>
+    </div>
+            <p> {{#if paintings.length}}
+                <ul class="shopping-cart-items">
+                    {{#each paintings}}
+                    <li class="shopping-cart-item">
+                        <img class = "cart-thumbnail" src="{{image._downloadURL}}">
+                        <div class = "cart-author">{{author}}</div>
+                        <div class = "cart-painting-title">{{title}}</div>
+                        <div class = "cart-price">{{price}}</div>
+                        <div class="remove-item" id={{id}}>&times</div>                    
+                    </li>
+                    {{/each}}
+                </ul>
+                {{else}} The cart is empty! {{/if}}.</p>
+    <div class="cart-footer">
+            <div>Total price:</div>
+            <div id = "total-price"></div>
+            <a href="#" class="order-button">Order painings</a>
+    </div>
+</div>
