@@ -44,10 +44,10 @@
     <header class="navbar navbar-fixed-top">
         <div class="container">
             <div class="row">
-                <div id="logo" class="col-md-3">
+                <div id="logo" class="col-md-2">
                     <a href="#/home">E-Gallery</a>
                 </div>
-                <div id="nav" class="col-md-9 text-right">
+                <div id="nav" class="col-md-10 text-right">
                     <div class="row">
                         <div id="menu" class="col-md-6">
                             <ul class="list-inline">
@@ -60,6 +60,10 @@
                             <span id="loggedInUser"></span>
                             <span> | </span>
                             <a href="#/logout">Logout</a>
+                            <div class="shopping-cart-container">
+                                <img src="/images/shopping-cart-16.png" id="shoppingCart" alt="shopping-cart">
+                                <div id="shopping-cart"></div>
+                            </div>
                         </div>
                         <div id="login-form" class="col-md-6">
                             <form class="form-inline" action="#/login" method="POST" id="loginForm">
@@ -73,7 +77,10 @@
                                 <a href="#/register" class="btn btn-info">Register</a>
                             </form>
                         </div>
-                        <div id="shopping-cart"></div>
+                        <!-- <div class="shopping-cart-container">
+                            <img src="/images/shopping-cart-16.png" id="shoppingCart" alt="shopping-cart">
+                            <div id="shopping-cart"></div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -137,19 +144,6 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-analytics.js"></script>
     <script src="./scripts/helpers/firebase-config.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            // const aside = Handlebars.compile(fs.readFileSync(__dirname + '/templates/partials/aside.handlebars').toString('utf-8'));
-            // Handlebars.registerPartial('aside', aside);
-            
-            // const fileName = 'aside';
-            // const data = this.getFile(`./templates/partials/${fileName}`);
-            // this.hbs.registerPartial(fileName, data);
-            // this.partials.push(fileName);
-            // Promise.resolve();
-    });
-    </script>
 
     <script src="./config.js"></script>
 </body>

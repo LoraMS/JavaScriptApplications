@@ -3,6 +3,9 @@ import { appModel } from 'appModel';
 import { userModel } from 'userModel';
 import { templates } from 'templates';
 import { userController } from 'userController';
+import { shoppingCartController } from 'shoppingCartController';
+import { shoppingCartManager } from 'shoppingCartManager';
+
 
 let appController = (function () {
     class AppController {
@@ -119,14 +122,14 @@ let appController = (function () {
                             selector.html(template(resultComments));
                         });
                     });
-    //           })
-    //             .then(() => {
-    //                 $('.buy').on('click', () => this.addToCart(result));
-    //                 if (userController.shoppingCartManager.isAdded(id)) {
-    //                     $('.buy').attr('disabled', true);
-    //                 } else {
-    //                     $('.buy').attr('disabled', false);
-    //                 }
+              })
+                .then(() => {
+                    $('.buy').on('click', () => this.addToCart(result, id));
+                    if (shoppingCartManager.isAdded(id)) {
+                        $('.buy').attr('disabled', true);
+                    } else {
+                        $('.buy').attr('disabled', false);
+                    }
                 })
                 .catch(function (error) {
                     toastr.error('Unable to display painting!');
@@ -153,20 +156,22 @@ let appController = (function () {
             });
         }
 
-    //     addToCart(paintingData) {
-    //         let newItmensCount = userController.shoppingCartManager.shoppingItemsCountElement.text(),
-    //             cartCountElement = userController.shoppingCartManager.shoppingItemsCountElement;
-    //         newItmensCount++;
-    //         cartCountElement.text(newItmensCount);
-    //         userController.shoppingCartManager.items.push({
-    //             id: paintingData._id,
-    //             image: paintingData.image,
-    //             title: paintingData.title,
-    //             author: paintingData.artist.name,
-    //             price: paintingData.price
-    //         });
-    //         $('.buy').attr('disabled', true);
-    //     }
+        addToCart(paintingData, id) {
+            let newItmensCount = shoppingCartManager.shoppingItemsCountElement.text(),
+                cartCountElement = shoppingCartManager.shoppingItemsCountElement;
+            newItmensCount++;
+            cartCountElement.text(newItmensCount);
+            console.log(newItmensCount);
+            console.log(cartCountElement);
+            shoppingCartManager.items.push({
+                id: id,
+                image: paintingData.imageURL,
+                title: paintingData.title,
+                author: paintingData.artistName,
+                price: paintingData.price
+            });
+            $('.buy').attr('disabled', true);
+        }
 
         getPaintingsByStyle(selector, style) {
             $(selector).empty();

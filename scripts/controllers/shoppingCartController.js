@@ -2,25 +2,23 @@ import toastr from 'toastr';
 import { appModel } from 'appModel';
 import { templates } from "templates";
 import { userController } from 'userController';
-import { ShoppingCartManager } from 'shoppingCartManager';
+import { shoppingCartManager } from 'shoppingCartManager';
 
 let shoppingCartController = (function() {
 class ShoppingCartController {
-    constructor(templates, ShoppingCartManager) {
+    constructor(templates) { 
         this.templates = templates;
-        this.shoppingCartManager = ShoppingCartManager;
     }
 
     viewCart(selector) {
         let cartContainer = $('#shopping-cart');
         cartContainer.appendTo(selector);
         let result = {
-            // paintings: this.shoppingCartManager.items
-            paintings: []
+            paintings: shoppingCartManager.items
         }
         this.templates.getTemplate('shopping-cart')
             .then(template => $(cartContainer).html(template(result)))
-            // .then(() => $('#total-price').html(this.shoppingCartManager.totalPrice))
+            .then(() => $('#total-price').html(shoppingCartManager.totalPrice))
             .then(() => $('.close').on('click', () => $(".cart-content").css('display', 'none')))
             // .then(() => $('.remove-item').on('click', (e) => {
             //     this.removeItem(e.target.id);

@@ -12,10 +12,10 @@
                 <ul class="shopping-cart-items">
                     {{#each paintings}}
                     <li class="shopping-cart-item">
-                        <img class = "cart-thumbnail" src="{{image._downloadURL}}">
-                        <div class = "cart-author">{{author}}</div>
-                        <div class = "cart-painting-title">{{title}}</div>
-                        <div class = "cart-price">{{price}}</div>
+                        <div class="cart-image"><img src="{{image}}"></div>
+                        <div class="cart-author">{{author}}</div>
+                        <div class="cart-painting-title">{{title}}</div>
+                        <div class="cart-price">${{price}}</div>
                         <div class="remove-item" id={{id}}>&times</div>                    
                     </li>
                     {{/each}}

@@ -1,5 +1,5 @@
 import { shoppingCartController } from 'shoppingCartController';
-import { ShoppingCartManager } from 'shoppingCartManager';
+import { shoppingCartManager } from 'shoppingCartManager';
 import bootstrap from 'bootstrap';
 import toastr from 'toastr';
 import { templates } from 'templates';
@@ -10,7 +10,7 @@ let userController = (function() {
     class UserController {
         constructor(templates, userModel) {
             this.shoppingCartController = shoppingCartController;
-            this.shoppingCartManager = new ShoppingCartManager("", window.storage);
+            this.shoppingCartManager = shoppingCartManager;
             this.templates = templates;
             this.userModel = userModel;
         }
@@ -56,32 +56,27 @@ let userController = (function() {
            
             userModel.login(email, password).then((userInfo) => {
             // $('#shoppingCart').show();
-            // $('#shoppingCart').on('click', () => {
-            //     this.shoppingCartController.viewCart($('.shopping-cart-container'));
-            // }); 
+            $('#shoppingCart').on('click', () => {
+                this.shoppingCartController.viewCart($('.shopping-cart-container'));
+            }); 
 
 
 
-            this.shoppingCartManager.username = user;
-            this.shoppingCartManager.items = [];
-            this.shoppingCartController = new ShoppingCartController(templates, userController.shoppingCartManager);
-            // //let cartElement = this.shoppingCartManager.shoppingCartElement;
+            // this.shoppingCartManager.username = user;
+            // this.shoppingCartManager.items = [];
+            // this.shoppingCartController = new ShoppingCartController(templates, userController.shoppingCartManager);
 
 
-            // cartElement.show();
-            // cartElement.on('click', () => {
-            //     this.shoppingCartController.viewCart($('#menu'))
-            // });
+            
 
-
-            // $('#loggedInUser').append(() => this.shoppingCartManager.shoppingCartElement);
-            // $('#loggedInUser').append(() => this.shoppingCartManager.shoppingItemsCountElement.text(0));
+            $('#loggedInUser').append(() => this.shoppingCartManager.shoppingCartElement);
+            $('#loggedInUser').append(() => this.shoppingCartManager.shoppingItemsCountElement.text(0));
 
                 toastr.success('User login successful!');
                 userModel.changeAuthState();
                 $('.email').val('');
                 $('.password').val('');
-                // $("#shopping-cart").removeClass('hidden');
+                $("#shopping-cart").removeClass('hidden');
                 location.hash = '#/paintings';
             }).catch((error) => {
                 toastr.error('Invalid username or password!');
@@ -92,7 +87,7 @@ let userController = (function() {
         logout() {
             userModel.logout().then(() => {
                 localStorage.clear();
-                // $("#shopping-cart").addClass('hidden');
+                $("#shopping-cart").addClass('hidden');
                 toastr.success('Logout successful!');
                 location.hash = '#/home';
             });
