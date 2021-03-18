@@ -402,27 +402,31 @@ body footer {
 body .hidden {
   display: none;
 }
-#shoppingCart {
+.shopping-cart-container {
+  display: inline-block;
+}
+.shopping-cart-container #shoppingCart {
   width: 30px;
   margin-left: 15px;
 }
-#shoppingCart:hover {
+.shopping-cart-container #shoppingCart:hover {
   cursor: pointer;
 }
-#fluid-notification {
+.shopping-cart-container #fluid-notification {
   display: inline;
   position: absolute;
-  left: 180px;
-  top: 16px;
+  right: 0;
+  top: 0;
   min-width: 17px;
   line-height: 17px;
   font-size: 10px;
   font-weight: bold;
   text-align: center;
-  background-color: #f0280a;
+  background-color: #ef523b;
   border-radius: 50%;
+  color: #fff;
 }
-#shopping-cart {
+.shopping-cart-container #shopping-cart {
   display: inline-block;
 }
 .cart-header {

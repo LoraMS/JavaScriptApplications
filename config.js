@@ -12,8 +12,6 @@ SystemJS.config({
 
         'app': './scripts/app.js',
         'templates': './scripts/helpers/template.js',
-        // 'validators': './scripts/helpers/validators.js',
-        // 'JSONFormatter': './scripts/helpers/JSONFormatter.js',
         'userModel': './scripts/requests/authentication-request.js',
         'appModel': './scripts/requests/app-requests.js',
         'userController': './scripts/controllers/userController.js',

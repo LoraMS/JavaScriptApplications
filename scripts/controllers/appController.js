@@ -161,8 +161,6 @@ let appController = (function () {
                 cartCountElement = shoppingCartManager.shoppingItemsCountElement;
             newItmensCount++;
             cartCountElement.text(newItmensCount);
-            console.log(newItmensCount);
-            console.log(cartCountElement);
             shoppingCartManager.items.push({
                 id: id,
                 image: paintingData.imageURL,

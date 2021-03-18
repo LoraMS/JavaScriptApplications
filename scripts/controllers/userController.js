@@ -55,7 +55,7 @@ let userController = (function() {
             $(selector).empty();
            
             userModel.login(email, password).then((userInfo) => {
-            // $('#shoppingCart').show();
+            $('#shoppingCart').show();
             $('#shoppingCart').on('click', () => {
                 this.shoppingCartController.viewCart($('.shopping-cart-container'));
             }); 
@@ -68,9 +68,7 @@ let userController = (function() {
 
 
             
-
-            $('#loggedInUser').append(() => this.shoppingCartManager.shoppingCartElement);
-            $('#loggedInUser').append(() => this.shoppingCartManager.shoppingItemsCountElement.text(0));
+            $('.shopping-cart-container').append(() => this.shoppingCartManager.shoppingItemsCountElement.text(0));
 
                 toastr.success('User login successful!');
                 userModel.changeAuthState();
