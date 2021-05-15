@@ -55,27 +55,16 @@ let userController = (function() {
             $(selector).empty();
            
             userModel.login(email, password).then((userInfo) => {
-            $('#shoppingCart').show();
             $('#shoppingCart').on('click', () => {
                 this.shoppingCartController.viewCart($('.shopping-cart-container'));
             }); 
-
-
-
-            // this.shoppingCartManager.username = user;
-            // this.shoppingCartManager.items = [];
-            // this.shoppingCartController = new ShoppingCartController(templates, userController.shoppingCartManager);
-
-
-            
             $('.shopping-cart-container').append(() => this.shoppingCartManager.shoppingItemsCountElement.text(0));
-
-                toastr.success('User login successful!');
-                userModel.changeAuthState();
-                $('.email').val('');
-                $('.password').val('');
-                $("#shopping-cart").removeClass('hidden');
-                location.hash = '#/paintings';
+            toastr.success('User login successful!');
+            userModel.changeAuthState();
+            $('.email').val('');
+            $('.password').val('');
+            $("#shopping-cart").removeClass('hidden');
+            location.hash = '#/paintings';           
             }).catch((error) => {
                 toastr.error('Invalid username or password!');
                 location.hash = '#/home';

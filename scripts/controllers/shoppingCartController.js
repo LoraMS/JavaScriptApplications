@@ -19,10 +19,10 @@ class ShoppingCartController {
         this.templates.getTemplate('shopping-cart')
             .then(template => $(cartContainer).html(template(result)))
             .then(() => $('#total-price').html(shoppingCartManager.totalPrice))
-            .then(() => $('.close').on('click', () => $(".cart-content").css('display', 'none')))
-            // .then(() => $('.remove-item').on('click', (e) => {
-            //     this.removeItem(e.target.id);
-            // }))
+            .then(() => $('.cart-close').on('click', () => $(".cart-content").css('display', 'none')))
+            .then(() => $('.remove-item').on('click', (e) => {
+                this.removeItem(e.target.id);
+            }))
             .then(() => $('.order-button').on('click', () => this.viewOrder(result, cartContainer)));
     }
 
@@ -32,18 +32,18 @@ class ShoppingCartController {
             .then(() => $('.close').on('click', () => $(".order-container").css('display', 'none')));
     }
 
-    // removeItem(id) {
-    //     let newItmensCount = userController.shoppingCartManager.shoppingItemsCountElement.text();
-    //     newItmensCount--;
-    //     userController.shoppingCartManager.shoppingItemsCountElement.text(newItmensCount);
-    //     let filteredItems = userController.shoppingCartManager.items.filter((item) => item.id !== id);
-    //     userController.shoppingCartManager.items = filteredItems;
-    //     let parent = $('#' + id).parent();
-    //     $('#' + id).remove();
-    //     $(parent).remove();
-    //     $('#total-price').html(this.shoppingCartManager.totalPrice);
+    removeItem(id) {
+        let newItmensCount = shoppingCartManager.shoppingItemsCountElement.text();
+        newItmensCount--;
+        shoppingCartManager.shoppingItemsCountElement.text(newItmensCount);
+        let filteredItems = shoppingCartManager.items.filter((item) => item.id !== id);
+        shoppingCartManager.items = filteredItems;
+        let parent = $('#' + id).parent();
+        $('#' + id).remove();
+        $(parent).remove();
+        $('#total-price').html(shoppingCartManager.totalPrice);
 
-    // }
+    }
 }
 return new ShoppingCartController(templates);
 })();

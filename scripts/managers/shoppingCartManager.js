@@ -10,13 +10,9 @@ class ShoppingCartManager {
     get totalPrice() {
         let sum = 0;
         for (var i = 0; i < this.items.length; i++) {
-            sum += +this.items[i].price.replace(/[^0-9]/g, '');
+            sum += +this.items[i].price;
         }
-        return "$"+sum;
-    }
-    
-    storeCart() {
-        this._storage.setItem(this._user.name, this._shoppingCart.toString())
+        return sum;
     }
 
     isAdded(id) {

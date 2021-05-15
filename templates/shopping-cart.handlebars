@@ -6,7 +6,7 @@
                         <div class = "painting-title-header-row">Title</div>
                         <div class = "painting-price-header-row">Price</div>
         </ul>
-        <span class="close">&times;</span>
+        <span class="cart-close">&times;</span>
     </div>
             <p> {{#if paintings.length}}
                 <ul class="shopping-cart-items">
@@ -22,7 +22,7 @@
                 </ul>
                 {{else}} The cart is empty! {{/if}}.</p>
     <div class="cart-footer">
-            <div>Total price:</div>
+            <div>Total price: $</div>
             <div id = "total-price"></div>
             <a href="#" class="order-button">Order painings</a>
     </div>

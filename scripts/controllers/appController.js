@@ -124,7 +124,15 @@ let appController = (function () {
                     });
               })
                 .then(() => {
-                    $('.buy').on('click', () => this.addToCart(result, id));
+                    let user = localStorage.getItem('email');
+                    $('.buy').on('click', function() {
+                        if(!user){
+                            toastr.error("Please login or register");
+                            location.hash = '#/register';
+                            return;
+                        }
+                        return addToCart(result, id);
+                    });
                     if (shoppingCartManager.isAdded(id)) {
                         $('.buy').attr('disabled', true);
                     } else {
@@ -154,21 +162,6 @@ let appController = (function () {
                 toastr.error('Unable to display painting!');
                 location.hash = '#/paintings';
             });
-        }
-
-        addToCart(paintingData, id) {
-            let newItmensCount = shoppingCartManager.shoppingItemsCountElement.text(),
-                cartCountElement = shoppingCartManager.shoppingItemsCountElement;
-            newItmensCount++;
-            cartCountElement.text(newItmensCount);
-            shoppingCartManager.items.push({
-                id: id,
-                image: paintingData.imageURL,
-                title: paintingData.title,
-                author: paintingData.artistName,
-                price: paintingData.price
-            });
-            $('.buy').attr('disabled', true);
         }
 
         getPaintingsByStyle(selector, style) {
@@ -257,6 +250,21 @@ let appController = (function () {
                 location.hash = '#/paintings';
             });
         }
+    }
+
+    function addToCart(paintingData, id) {
+        let newItmensCount = shoppingCartManager.shoppingItemsCountElement.text(),
+            cartCountElement = shoppingCartManager.shoppingItemsCountElement;
+        newItmensCount++;
+        cartCountElement.text(newItmensCount);
+        shoppingCartManager.items.push({
+            id: id,
+            image: paintingData.imageURL,
+            title: paintingData.title,
+            author: paintingData.artistName,
+            price: paintingData.price
+        });
+        $('.buy').attr('disabled', true);
     }
 
     function downloadWithSuccess(data) {

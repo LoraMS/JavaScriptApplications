@@ -4,6 +4,8 @@ import jQuery from "jquery";
 window.$ = window.jQuery = jQuery;
 import { userController } from 'userController';
 import { appController } from 'appController';
+import { shoppingCartController } from 'shoppingCartController';
+import { shoppingCartManager } from 'shoppingCartManager';
 import { appModel } from 'appModel';
 
 let app = app || {};
@@ -90,7 +92,6 @@ let app = app || {};
                 appController.searchByArtist(selector, data);
             }
         });
-
     });
 
     app.router.run('#/');
