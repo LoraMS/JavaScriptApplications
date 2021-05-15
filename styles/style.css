@@ -434,6 +434,10 @@ body .hidden {
   background-color: #dddddd;
   color: white;
 }
+.cart-close {
+  color: gray;
+  cursor: pointer;
+}
 .cart-body {
   overflow-y: auto;
   padding: 2px 16px;
