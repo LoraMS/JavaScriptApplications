@@ -1,6 +1,6 @@
-# E-Gallery - JavaScript Applications
+## E-Gallery - JavaScript Applications
 
-# About the progect
+## About the progect
 
 E-gallery is Single Page Application with Javascript, Firebase(Database/Authentication, Host), Less, Bootstrap, jQuery, Handlebars, SammyJS, SystemJS, Gulp
 
@@ -10,7 +10,7 @@ E-gallery is Single Page Application with Javascript, Firebase(Database/Authenti
   
 [Requirements](https://github.com/TelerikAcademy/JavaScript-Applications/tree/master/Teamwork)  
 
-# Pages
+## Pages
 1. Homepage
 2. Login/Register Form
 3. Gallery
@@ -18,7 +18,7 @@ E-gallery is Single Page Application with Javascript, Firebase(Database/Authenti
 5. Artist Page
 6. Contact Form
 
-#Functionalities
+## Functionalities
 1. Login/Register
 2. List all paintings
 3. Display single painting
