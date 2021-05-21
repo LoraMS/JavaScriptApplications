@@ -4,7 +4,7 @@
 
 E-gallery is Single Page Application with Javascript, Firebase(Database/Authentication, Host), Less, Bootstrap, jQuery, Handlebars, SammyJS, SystemJS, Gulp
 
-![Alt Text](https://github.com/LoraMS/JavaScriptApplications/blob/master/images/e-gallery.gif)
+![Alt Text](https://github.com/LoraMS/JavaScriptApplications/blob/master/images/e_gallery.gif)
 
 ## Project Requirements  
   
